@@ -19,8 +19,6 @@ OBJECTS = source.o
 result: $(OBJECTS)
 	clang -o $@ $^ $(LIBS)
 
-# glad.o: glad.c
-
 source.o: source.cpp
 
 .PHONE:
