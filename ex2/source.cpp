@@ -1,6 +1,4 @@
-// My First OpenGL Window
-// 2019/JUN/22
-
+// My Second OpenGL Window
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -126,7 +124,7 @@ int main(int argc, char** argv)
 //     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 // #endif
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "My First OGL Window", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(800, 600, "My Second OGL Window", nullptr, nullptr);
     checkResult(window == nullptr, "glfwCreateWindow");
 
     glfwMakeContextCurrent(window);
