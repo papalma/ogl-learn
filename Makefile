@@ -1,11 +1,9 @@
-.PHONY:
-all:
-	$(MAKE) -C ex1 $(MAKECMDGOALS)
-	$(MAKE) -C ex2 $(MAKECMDGOALS)
-	$(MAKE) -C ex3 $(MAKECMDGOALS)
-	$(MAKE) -C ex4 $(MAKECMDGOALS)
-	$(MAKE) -C ex5 $(MAKECMDGOALS)
+EX_DIRS= glad ex*
 
-.PHONY:
+all: $(EX_DIRS)
+
+.PHONY: force
+$(EX_DIRS): force
+	$(MAKE) -C $@ $(MAKECMDGOALS)
+
 clean: all
-	$(MAKE) -C glad $(MAKECMDGOALS)

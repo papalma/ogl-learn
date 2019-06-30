@@ -5,4 +5,4 @@ src/glad.o: src/glad.c
 
 .PHONY:
 clean:
-	rm -f *.o
+	rm -f src/*.o
