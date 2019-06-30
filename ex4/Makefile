@@ -21,6 +21,6 @@ result: $(OBJECTS)
 
 source.o: source.cpp
 
-.PHONE:
+.PHONY:
 clean:
 	rm -f *.o result
