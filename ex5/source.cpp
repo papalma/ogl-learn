@@ -1,22 +1,24 @@
-// Changes in this file
-// - Shaders are read from file
-// - Use uniform in fragment shader
+// Changes in the example:
+// - Vertex contain color data for a triangle
+// - Vertex and fragment shaders modified accordingly
+// - Add a color attrib in addition to position
+// - update main to draw just a triangle.
 #include <iostream>
 #include <fstream>
 #include <cmath>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+// NOTE: each point (first 3 values) includes a color attribute (last 3 values)
 GLfloat vertices[] = {
-     0.5f,  0.5f, 0.0f,
-     0.5f, -0.5f, 0.0f,
-    -0.5f, -0.5f, 0.0f,
-    -0.5f,  0.5f, 0.0f,
+     0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+    -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+     0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f
 };
 
+// NOTE: go back to draw a single triangle
 GLuint indices[] = {
-    0, 1, 3,
-    1, 2, 3,
+    0, 1, 2
 };
 
 void shaderComp(GLuint shader, const char* text)
@@ -87,8 +89,14 @@ void createArrays(GLuint& vbo, GLuint& vao, GLuint& ebo)
 
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
-    glVertexAttribPointer(0, 3 ,GL_FLOAT, GL_FALSE, 3*sizeof(float), (void*)0);
+
+    // NOTE: this defines each attrib location in vertex array
+    // vertex position definition
+    glVertexAttribPointer(0, 3 ,GL_FLOAT, GL_FALSE, 6*sizeof(float), (void*) 0) ;
     glEnableVertexAttribArray(0);
+    // color definition
+    glVertexAttribPointer(1, 3 ,GL_FLOAT, GL_FALSE, 6*sizeof(float), (void*) (3* sizeof(float))) ;
+    glEnableVertexAttribArray(1);
 
     glGenBuffers(1, &ebo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
@@ -142,7 +150,7 @@ int main(int argc, char** argv)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    // while the book states this is required for mac, it works without it
+    // it works in mac without this
 // #ifdef __APPLE__
 //     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 // #endif
@@ -168,16 +176,12 @@ int main(int argc, char** argv)
         glClearColor( 0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // Get info for Uniform
-        float timeValue = glfwGetTime();
-        float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
-        int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-
         // let's draw
         glUseProgram(shaderProgram);
-        glUniform4f(vertexColorLocation, 0.5f, greenValue, 0.0f, 1.0f);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+        // NOTE: use only 3 vertices.
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 
         glfwSwapBuffers(window);
         glfwPollEvents();

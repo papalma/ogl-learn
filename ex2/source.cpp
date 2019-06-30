@@ -132,7 +132,7 @@ int main(int argc, char** argv)
 //     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 // #endif
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "My Second OGL Window", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(800, 600, "My OGL Example Window", nullptr, nullptr);
     checkResult(window == nullptr, "glfwCreateWindow");
 
     glfwMakeContextCurrent(window);
