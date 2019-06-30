@@ -5,7 +5,7 @@ CXX=clang++
 CC=clang
 
 GLAD_DIR = "../glad"
-GLFW_DIR = "../glfw"
+GLFW_DIR = "../glfw/macos"
 
 INCLUDE = -I $(GLAD_DIR)/include -I $(GLFW_DIR)/include
 CXXFLAGS = $(INCLUDE) -std=c++17
