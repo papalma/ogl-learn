@@ -1,0 +1,11 @@
+.PHONY:
+all:
+	$(MAKE) -C ex1 $(MAKECMDGOALS)
+	$(MAKE) -C ex2 $(MAKECMDGOALS)
+	$(MAKE) -C ex3 $(MAKECMDGOALS)
+	$(MAKE) -C ex4 $(MAKECMDGOALS)
+	$(MAKE) -C ex5 $(MAKECMDGOALS)
+
+.PHONY:
+clean: all
+	$(MAKE) -C glad $(MAKECMDGOALS)
