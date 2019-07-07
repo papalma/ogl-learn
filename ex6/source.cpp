@@ -94,8 +94,7 @@ void createArrays(GLuint& vbo, GLuint& vao, GLuint& ebo)
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
 
-    // NOTE: this defines each attrib location in vertex array
-    // vertex position definition
+    // Stride was updated attributes before texture coordinates.
     glVertexAttribPointer(0, 3 ,GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) 0) ;
     glEnableVertexAttribArray(0);
 
@@ -103,7 +102,7 @@ void createArrays(GLuint& vbo, GLuint& vao, GLuint& ebo)
     glVertexAttribPointer(1, 3 ,GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) (3* sizeof(float))) ;
     glEnableVertexAttribArray(1);
 
-    // NEW: texture coords
+    // texture coords
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) (6 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
@@ -159,6 +158,7 @@ void createTextures(int vao) {
     std::string texName = "container.jpg";
     unsigned char* data = stbi_load( texName.c_str(), &width, &height, &nrChannels, 0);
 
+    // didn't notice any difference with this or without it.
     // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -220,7 +220,7 @@ int main(int argc, char** argv)
         glUseProgram(shaderProgram);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 
-        // NOTE: use only 3 vertices.
+        // Now use 6 vertices
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
         glfwSwapBuffers(window);
