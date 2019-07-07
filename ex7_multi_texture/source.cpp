@@ -171,9 +171,6 @@ GLuint createTextures(int vao, const std::string& texFilename, GLenum format = G
 
         // free input image memory
         stbi_image_free(data);
-
-        // bind texture
-        // glBindTexture(GL_TEXTURE_2D, texture);
         return texture;
     }
     else {
