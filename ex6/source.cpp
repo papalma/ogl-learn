@@ -155,7 +155,7 @@ GLuint createShaderProgram()
 void createTextures(int vao) {
     GLuint texture;
     int width, height, nrChannels;
-    std::string texName = "container.jpg";
+    std::string texName = "../res/container.jpg";
     unsigned char* data = stbi_load( texName.c_str(), &width, &height, &nrChannels, 0);
 
     // didn't notice any difference with this or without it.
