@@ -7,8 +7,9 @@ CC=clang
 GLAD_DIR = ../glad
 GLAD_LIB = $(GLAD_DIR)/src/glad.o
 GLFW_DIR = ../glfw/macos
+GLM_DIR = ../glm
 
-INCLUDE = -I $(GLAD_DIR)/include -I $(GLFW_DIR)/include -I ../include
+INCLUDE = -I $(GLM_DIR) -I $(GLAD_DIR)/include -I $(GLFW_DIR)/include -I ../include
 CXXFLAGS = $(INCLUDE) -std=c++17 -Wall
 CFLAGS = $(INCLUDE) -Wall
 
