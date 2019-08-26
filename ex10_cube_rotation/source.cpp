@@ -144,9 +144,9 @@ void createArrays(GLuint& vbo, GLuint& vao, GLuint& ebo)
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*) (3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
-    glGenBuffers(1, &ebo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    // glGenBuffers(1, &ebo);
+    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+    // glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 }
 
 GLuint createShaderProgram()
