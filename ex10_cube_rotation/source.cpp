@@ -19,8 +19,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
 
 GLfloat vertices[] = {
     // positions          // texture coords
@@ -249,12 +249,14 @@ int main(int argc, char** argv)
     glUniform1i(glGetUniformLocation(shaderProgram, "texture1"), 0);
     glUniform1i(glGetUniformLocation(shaderProgram, "texture2"), 1);
 
-
     int uniMatrixModel = glGetUniformLocation(shaderProgram, "model");
     int uniMatrixView = glGetUniformLocation(shaderProgram, "view");
     int uniMatrixProj = glGetUniformLocation(shaderProgram, "projection");
 
     glm::mat4 model = glm::mat4(1.0f);
+
+    glEnable(GL_DEPTH_TEST);
+
     while(!glfwWindowShouldClose(window)) {
         // check pressed input
         processInput(window);
@@ -263,7 +265,7 @@ int main(int argc, char** argv)
 
         // fill screen with greenish color
         glClearColor( 0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // bind textures on corresponding texture units
         glActiveTexture(GL_TEXTURE0);
